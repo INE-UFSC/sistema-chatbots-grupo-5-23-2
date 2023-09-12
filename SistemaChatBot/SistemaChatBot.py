@@ -12,7 +12,7 @@ class SistemaChatBot:
         self.__bot = None
     
     def boas_vindas(self):
-        print('Seja bem-vindo ao FiveBot!')
+        print('Seja bem-vindo ao FiveBots!')
 
     def mostra_menu(self):
         print('Os chat bots disponíveis no momento são: ')
@@ -29,8 +29,9 @@ class SistemaChatBot:
                 print('Bot inválido! Escolha novamente')
 
     def mostra_comandos_bot(self):
-        for i in self.__bot.comando:
-            print(f'{i} - {self.__bot.comando[i]}')
+        for i in self.__bot.comandos:
+            comando = self.__bot.comandos[i]['comando']
+            print(f'{i} - {comando}')
 
     def le_envia_comando(self):
         pass
@@ -39,15 +40,12 @@ class SistemaChatBot:
         self.boas_vindas()
         self.mostra_menu()
         self.escolhe_bot()
-        self.__bot.boas_vindas()
+        print(self.__bot.boas_vindas())
         while True:
-            self.__bot.mostra_comandos()
+            self.mostra_comandos_bot()
             cmd = int(input())
             if cmd == -1:
-                self.__bot.despedida()
+                print(self.__bot.despedida())
                 break
-            self.__bot.executa_comando(cmd)
-        ##mostra mensagens de boas-vindas do bot escolhido
-        ##entra no loop de mostrar comandos do bot e escolher comando do bot até o usuário definir a saída
-        ##ao sair mostrar a mensagem de despedida do bot
-
+            comando = self.__bot.executa_comando(cmd)
+            print(comando)

@@ -22,6 +22,10 @@ class BotZangado(Bot):
     def nome(self):
         return self.__nome
 
+    @property
+    def comandos(self):
+        return self.__comandos
+    
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
@@ -35,10 +39,10 @@ class BotZangado(Bot):
             print(f'{i} - {comando}')
     
     def executa_comando(self, cmd):
-        print(self.__comandos[cmd]['resposta'])
+        return self.__comandos[cmd]['resposta']
 
     def boas_vindas(self):
-        print(f'-> {self.__nome} diz: Grande porcaria. Podia ter escolhido outro.')
+        return f'-> {self.__nome} diz: Grande porcaria. Podia ter escolhido outro.'
 
     def despedida(self):
-        print('Espero nunca mais te ver.')
+        return 'Espero nunca mais te ver.'

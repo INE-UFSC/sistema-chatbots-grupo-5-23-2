@@ -25,6 +25,11 @@ class BotAmigavel(Bot):
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
+    
+    @property
+    def comandos(self):
+        return self.__comandos
+
 
     def apresentacao(self):
         print(f'-> Olá, sou o {self.__nome}! Fico feliz em conhecê-lo!')
@@ -35,10 +40,10 @@ class BotAmigavel(Bot):
             print(f'{i} - {comando}')
             
     def executa_comando(self, cmd):
-        print(self.__comandos[cmd]['resposta'])
+        return self.__comandos[cmd]['resposta']
 
     def boas_vindas(self):
-        print(f'-> {self.__nome} diz: Obrigado por ter me escolhido. Espero que sejamos bons amigos.')
+        return f'-> {self.__nome} diz: Obrigado por ter me escolhido. Espero que sejamos bons amigos.'
 
     def despedida(self):
-        print('Pena que já acabou...')
+        return 'Pena que já acabou...'
