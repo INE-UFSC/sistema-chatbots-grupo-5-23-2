@@ -40,7 +40,11 @@ class BotAmigavel(Bot):
             print(f'{i} - {comando}')
             
     def executa_comando(self, cmd):
-        return self.__comandos[cmd]['resposta']
+        try:  
+            comando = self.__comandos[cmd]['resposta']
+        except KeyError:
+            comando = 'Comando inexistente! Tente novamente'
+        return comando
 
     def boas_vindas(self):
         return f'-> {self.__nome} diz: Obrigado por ter me escolhido. Espero que sejamos bons amigos.'

@@ -26,7 +26,11 @@ class BotFitness(Bot):
         return "Eu sou o Rodrigo Goes, natural é a fonte da juventude!"
     
     def executa_comando(self, cmd):
-        return ("Você disse: %s" % self.comandos[cmd]['comando']) + ("\nRodrigo Goes: %s" % self.comandos[cmd]['resposta'])
+        try:  
+            comando = self.__comandos[cmd]['resposta']
+        except KeyError:
+            comando = 'Comando inexistente, frango!!'
+        return comando
 
     def boas_vindas(self):
         return ("Obrigado por me escolher!")

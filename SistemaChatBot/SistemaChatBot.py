@@ -25,7 +25,7 @@ class SistemaChatBot:
                 escolha = int(input('Digite o número do chat bot desejado: '))
                 self.__bot = self.__lista_bots[escolha-1]
                 break
-            except [TypeError, IndexError]:
+            except IndexError:
                 print('Bot inválido! Escolha novamente')
 
     def mostra_comandos_bot(self):

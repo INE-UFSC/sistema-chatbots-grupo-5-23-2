@@ -39,7 +39,11 @@ class BotZangado(Bot):
             print(f'{i} - {comando}')
     
     def executa_comando(self, cmd):
-        return self.__comandos[cmd]['resposta']
+        try:  
+            comando = self.__comandos[cmd]['resposta']
+        except KeyError:
+            comando = 'Comando inexistente bocó!'
+        return comando
 
     def boas_vindas(self):
         return f'-> {self.__nome} diz: Grande porcaria. Podia ter escolhido outro.'
