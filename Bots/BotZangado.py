@@ -1,22 +1,14 @@
-from Bots.Bot import Bot
+from Bot import Bot
+from Comando import Comando
+
 
 class BotZangado(Bot):
     def __init__(self,  nome):
         self.__nome = nome
-        self.__comandos = {
-            1: {
-                'comando': 'Bom dia',
-                'resposta': 'Bom dia é o ...'
-            },
-            2: {
-                'comando': 'Conte uma piada',
-                'resposta': 'O que é, o que é que tem quatro bocas mas não fala? \nCom certeza não é sua mãe!'
-            },
-            3: {
-                'comando': 'Quero um conselho',
-                'resposta': 'KKKKK. Não sou psicólogo.'
-            }
-        }
+        self.__comandos = [Comando(1, 'Bom dia', ['Bom dia é o ...']), 
+                           Comando(2, 'Conte uma piada', ['O que é, o que é que tem quatro bocas mas não fala? \nCom certeza não é sua mãe!']), 
+                           Comando(3, 'Quero um conselho', ['KKKKK. Não sou psicólogo.'])]
+                        #Dicionário substituido por lista de objetos
 
     @property
     def nome(self):
@@ -34,16 +26,17 @@ class BotZangado(Bot):
         print(f'-> Olá, sou o {self.__nome}! Desprazer em conhecê-lo!')
  
     def mostra_comandos(self):
-        for i in self.__comandos:
-            comando = self.__comandos[i]['comando']
-            print(f'{i} - {comando}')
-    
-    def executa_comando(self, cmd):
+        for comando in self.__comandos:
+            print(f'{comando.id} - {comando.mensagem}')
+            #Substituido para lógica com atributos da classe Comando
+
+    def executa_comando(self, id):
         try:  
-            comando = self.__comandos[cmd]['resposta']
+            for comando in self.__comandos:
+                if comando.id == id:
+                    return comando.getRandomResposta()
         except KeyError:
-            comando = 'Comando inexistente bocó!'
-        return comando
+            return 'Comando inexistente, bocó!'
 
     def boas_vindas(self):
         return f'-> {self.__nome} diz: Grande porcaria. Podia ter escolhido outro.'

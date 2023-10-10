@@ -1,5 +1,4 @@
 from Bots.Bot import Bot
-from Bots.BotZangado import BotZangado
 from abc import ABC
 
 class SistemaChatBot:
@@ -29,9 +28,11 @@ class SistemaChatBot:
                 print('Bot inválido! Escolha novamente')
 
     def mostra_comandos_bot(self):
-        for i in self.__bot.comandos:
-            comando = self.__bot.comandos[i]['comando']
-            print(f'{i} - {comando}')
+        for comando in self.__bot.comandos:
+            print(f'{comando.id} - {comando.mensagem}')
+        #for i in self.__bot.comandos:
+         #   comando = self.__bot.comandos[i]['comando']
+          #  print(f'{i} - {comando}')
 
     def le_envia_comando(self):
         pass
