@@ -1,5 +1,5 @@
-from Bot import Bot
-from Comando import Comando
+from .Bot import Bot
+from .Comando import Comando
 
 class BotFitness(Bot):
     def __init__(self,nome):
