@@ -1,5 +1,10 @@
 from Bots.Bot import Bot
 from abc import ABC
+import textwrap as tw
+
+
+
+
 
 class SistemaChatBot:
     def __init__(self, nomeEmpresa, lista_bots):
@@ -11,21 +16,20 @@ class SistemaChatBot:
         self.__bot = None
     
     def boas_vindas(self):
-        print('Seja bem-vindo ao FiveBots!')
+        return('Seja bem-vindo ao FiveBots!')
 
     def mostra_menu(self):
-        print('Os chat bots disponíveis no momento são: ')
+        return("Os bots disponíveis no momento são: ")
+    
+    def favor_escolher(self):
+        return("Favor escolher um digitando o número!")
+    
+    def mostra_bots(self):
+        bots = ""
         for pos, val in enumerate(self.__lista_bots):
-            print(f'{pos+1} - {val.nome }')
+            bots = bots + (f'\n{pos+1} - {val.nome }')
+        return bots
 
-    def escolhe_bot(self):
-        while True:
-            try:
-                escolha = int(input('Digite o número do chat bot desejado: '))
-                self.__bot = self.__lista_bots[escolha-1]
-                break
-            except IndexError:
-                print('Bot inválido! Escolha novamente')
 
     def mostra_comandos_bot(self):
         for comando in self.__bot.comandos:
@@ -37,16 +41,30 @@ class SistemaChatBot:
     def le_envia_comando(self):
         pass
 
-    def inicio(self):
-        self.boas_vindas()
-        self.mostra_menu()
-        self.escolhe_bot()
-        print(self.__bot.boas_vindas())
-        while True:
-            self.mostra_comandos_bot()
-            cmd = int(input())
-            if cmd == -1:
-                print(self.__bot.despedida())
-                break
-            comando = self.__bot.executa_comando(cmd)
-            print(comando)
+    @property
+    def bot(self):
+        return self.__bot
+
+    def responder(self, num_msg, mensagem_user):
+        if num_msg == 1:
+            return (self.boas_vindas() + ' ' + self.mostra_menu() + self.mostra_bots() + "\n" + self.favor_escolher())
+        
+        try:
+            return self.__bot.executa_comando(mensagem_user)
+        
+        except AttributeError:
+            try:
+                self.__bot = self.__lista_bots[int(mensagem_user)-1]
+                return (self.__bot.apresentacao() + ' ' + self.__bot.boas_vindas())
+
+            except ValueError:
+                return "Caractere inválido - favor digitar 1, 2 ou 3."
+
+    def formatado(self, num_msg, mensagem_user):
+        return tw.fill(self.responder(num_msg, mensagem_user), 77, replace_whitespace=False)
+    
+    def botRemove(self):
+        self.__bot = None
+    
+
+

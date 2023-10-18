@@ -26,12 +26,10 @@ class BotFitness(Bot):
             #Substituido para lógica com atributos da classe Comando
             
     def executa_comando(self, id):
-        try:  
-            for comando in self.__comandos:
-                if comando.id == id:
-                    return comando.getRandomResposta()
-        except KeyError:
-            return 'Comando inexistente, frango!!'
+        for comando in (self.__comandos):
+            if comando.id == id or comando.mensagem == id:
+                return str(comando.getRandomResposta())
+        return "Comando inexistente, frango!!"
 
     def boas_vindas(self):
         return ('Obrigado por me escolher!')
