@@ -4,6 +4,8 @@ from SistemaChatBot import SistemaChatBot as scb
 from Bots.BotZangado import BotZangado
 from Bots.BotAmigavel import BotAmigavel
 from Bots.BotFitness import BotFitness
+from logger import JSONLogger 
+
 def criarWindowAjuda():
     comandosDocinho = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
     comandosFlorzinha = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
@@ -24,7 +26,9 @@ comandosDocinho = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho
 comandosFlorzinha = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
 comandosLindinha = '--> Quero uma opinião sobre o meu treino;\n\n--> Treino para braço;\n\n--> Quero uma opinião sobre o meu shape.\n'
 
-
+logger = JSONLogger('logs.json')
+logger.log("Sistema iniciado")
+logger.save_logs()
 
 #predefinicoes
 number_msg = 0

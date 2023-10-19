@@ -1,10 +1,9 @@
 from Bots.Bot import Bot
 from abc import ABC
 import textwrap as tw
+from logger import JSONLogger 
 
-
-
-
+logger = JSONLogger('logs.json')
 
 class SistemaChatBot:
     def __init__(self, nomeEmpresa, lista_bots):
@@ -50,8 +49,11 @@ class SistemaChatBot:
             return (self.boas_vindas() + ' ' + self.mostra_menu() + self.mostra_bots() + "\n" + self.favor_escolher())
         
         try:
-            return self.__bot.executa_comando(mensagem_user)
-        
+            resposta = self.__bot.executa_comando(mensagem_user)
+            logger.log(f"Resposta: {resposta}")
+            logger.save_logs()    
+            return resposta        
+
         except AttributeError:
             try:
                 self.__bot = self.__lista_bots[int(mensagem_user)-1]
@@ -63,6 +65,8 @@ class SistemaChatBot:
                 return "Caracteres inválidos - favor digitar 1, 2 ou 3"
 
     def formatado(self, num_msg, mensagem_user):
+        logger.log(f"Mensagem: {mensagem_user}")
+        logger.save_logs()
         return tw.fill(self.responder(num_msg, mensagem_user), 77, replace_whitespace=False)
     
     def botRemove(self):

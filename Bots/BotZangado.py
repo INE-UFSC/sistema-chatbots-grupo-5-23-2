@@ -7,7 +7,7 @@ class BotZangado(Bot):
     def __init__(self,  nome):
         self.__nome = nome
         self.__comandos = [Comando('Bom dia', ['Bom dia é o ...']), 
-                           Comando('Conte uma piada', ['O que é, o que é que tem quatro bocas mas não fala? Com certeza não é sua mãe!']), 
+                           Comando('Conte uma piada', ['O que é, o que é que tem quatro bocas mas não fala? \nCom certeza não é sua mãe!']), 
                            Comando('Quero um conselho', ['KKKKK. Não sou psicólogo.'])]
                         #Dicionário substituido por lista de objetos
 
@@ -24,7 +24,7 @@ class BotZangado(Bot):
         self.__nome = nome
 
     def apresentacao(self):
-        return(f'Olá, sou o {self.__nome}! Desprazer em conhecê-lo!')
+        return(f'Olá, sou o {self.__nome}! Desprazer em conhecê-lo!\n')
  
     def mostra_comandos(self):
         for comando in self.__comandos:
