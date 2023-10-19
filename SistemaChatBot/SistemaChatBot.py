@@ -60,9 +60,9 @@ class SistemaChatBot:
                 return (self.__bot.apresentacao() + ' ' + self.__bot.boas_vindas())
 
             except IndexError:
-                return "Valor inválido - favor digitar 1, 2 ou 3."
+                return "Valor inválido"
             except ValueError:
-                return "Caracteres inválidos - favor digitar 1, 2 ou 3"
+                return "Caractere(s) inválido(s)"
 
     def formatado(self, num_msg, mensagem_user):
         logger.log(f"Mensagem: {mensagem_user}")
