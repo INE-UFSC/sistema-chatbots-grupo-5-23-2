@@ -1,11 +1,10 @@
 import random
 
 class Comando:
-    # recebe o id (inteiro), a mensagem e as respostas (opcional)
-    def __init__(self, id: int, mensagem: str, respostas = []):
-        self.__id = id
-        self.__mensagem = mensagem
-        self.__respostas = respostas
+    # recebe o id (str) e as respostas (opcional)
+    def __init__(self, id: str, respostas = []):
+            self.__id = id
+            self.__respostas = respostas
 
     @property
     def id(self):

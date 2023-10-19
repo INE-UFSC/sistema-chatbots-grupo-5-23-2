@@ -2,12 +2,13 @@ from .Bot import Bot
 from .Comando import Comando
 
 
+#Florzinha
 class BotAmigavel(Bot):
     def __init__(self,  nome):
         self.__nome = nome
-        self.__comandos = [Comando(1, 'Bom dia', ['Bom dia! Como você está?']), 
-                           Comando(2, 'Conte uma piada', ['Por que o esqueleto não briga com ninguém?\nPorque ele não tem saco!']), 
-                           Comando(3, 'Quero um conselho', ['Pegue e se cuide! Ande pela sombra sempre.'])]
+        self.__comandos = [Comando('Bom dia', ['Bom dia! Como você está?']), 
+                           Comando('Conte uma piada', ['Por que o esqueleto não briga com ninguém?\nPorque ele não tem saco!']), 
+                           Comando('Quero um conselho', ['Pegue e se cuide! Ande pela sombra sempre.'])]
                         #Dicionário substituido por lista de objetos
 
     @property
@@ -22,7 +23,6 @@ class BotAmigavel(Bot):
     def comandos(self):
         return self.__comandos
 
-
     def apresentacao(self):
         return(f'Olá, sou o {self.__nome}! Fico feliz em conhecê-lo!')
  
@@ -31,14 +31,18 @@ class BotAmigavel(Bot):
             print(f'{comando.id} - {comando.mensagem}')
             #Substituido para lógica com atributos da classe Comando
             
-    def executa_comando(self, id):
+    def executa_comando(self, id_comando: str):
+        flag = False
         for comando in (self.__comandos):
-            if comando.id == id or comando.mensagem == id:
+            if comando.id.upper() == id_comando.upper():
+                flag = True
                 return str(comando.getRandomResposta())
-        return "Comando inexistente! Tente novamente por favor :)"
+        if flag == False:
+            return "Comando inexistente! Tente novamente por favor :)"
+            #Tava com um return de comando inexistente aqui que rodaria anyways, coloquei uma flag para verificar se ele encontrou resposta
 
     def boas_vindas(self):
-        return f'Obrigado por ter me escolhido. Espero que sejamos bons amigos.'
+        return 'Obrigado por ter me escolhido. Espero que sejamos bons amigos.'
 
     def despedida(self):
         return 'Pena que já acabou...'

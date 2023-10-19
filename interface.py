@@ -1,4 +1,3 @@
-
 import PySimpleGUI as psg
 import textwrap as tw
 from SistemaChatBot import SistemaChatBot as scb
@@ -7,15 +6,9 @@ from Bots.BotAmigavel import BotAmigavel
 from Bots.BotFitness import BotFitness
 
 
-
 lista_bots = [BotZangado("Docinho"), BotAmigavel("Florzinha"), BotFitness("Lindinha")]
 
 sys = scb.SistemaChatBot("Fivebots", lista_bots)
-
-
-
-
-
 
 #predefinicoes
 number_msg = 0
@@ -29,8 +22,6 @@ ja_somou = False
 deleted = []
 conversation_column =[[]]
 mensagem_automatica = tw.fill(mensagem_automatica_pre, 75)
-
-
 
 
 #layout
