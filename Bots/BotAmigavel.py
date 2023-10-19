@@ -38,7 +38,7 @@ class BotAmigavel(Bot):
                 flag = True
                 return str(comando.getRandomResposta())
         if flag == False:
-            return "Comando inexistente! Tente novamente por favor :)"
+            return "Comando inexistente! Tente novamente por favor :) Se precisar de ajuda clique em 'ajuda'"
             #Tava com um return de comando inexistente aqui que rodaria anyways, coloquei uma flag para verificar se ele encontrou resposta
 
     def boas_vindas(self):

@@ -57,8 +57,10 @@ class SistemaChatBot:
                 self.__bot = self.__lista_bots[int(mensagem_user)-1]
                 return (self.__bot.apresentacao() + ' ' + self.__bot.boas_vindas())
 
+            except IndexError:
+                return "Valor inválido - favor digitar 1, 2 ou 3."
             except ValueError:
-                return "Caractere inválido - favor digitar 1, 2 ou 3."
+                return "Caracteres inválidos - favor digitar 1, 2 ou 3"
 
     def formatado(self, num_msg, mensagem_user):
         return tw.fill(self.responder(num_msg, mensagem_user), 77, replace_whitespace=False)

@@ -4,16 +4,31 @@ from SistemaChatBot import SistemaChatBot as scb
 from Bots.BotZangado import BotZangado
 from Bots.BotAmigavel import BotAmigavel
 from Bots.BotFitness import BotFitness
+def criarWindowAjuda():
+    comandosDocinho = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
+    comandosFlorzinha = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
+    comandosLindinha = '--> Quero uma opinião sobre o meu treino;\n\n--> Treino para braço;\n\n--> Quero uma opinião sobre o meu shape.\n'
+    layout_ajuda = [[psg.Text("Comandos de docinho: ", font=('Arial bold', 15))], [psg.Text(comandosDocinho, font = ('Arial', 11))], 
+                [psg.Text("Comandos de florzinha: ", font=('Arial bold', 15))], [psg.Text(comandosFlorzinha, font = ('Arial', 11))],
+                [psg.Text("Comandos de lindinha: ", font=('Arial bold', 15))], [psg.Text(comandosLindinha, font = ('Arial', 11))],
+                [psg.Button("Fechar", key='-ajuda_fechada-')]]
+    return psg.Window("Ajuda", layout_ajuda, size=(350, 340))
 
 
 lista_bots = [BotZangado("Docinho"), BotAmigavel("Florzinha"), BotFitness("Lindinha")]
 
 sys = scb.SistemaChatBot("Fivebots", lista_bots)
 
+#comandos
+comandosDocinho = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
+comandosFlorzinha = '--> Bom dia;\n\n--> Conte uma piada;\n\n--> Quero um conselho.'
+comandosLindinha = '--> Quero uma opinião sobre o meu treino;\n\n--> Treino para braço;\n\n--> Quero uma opinião sobre o meu shape.\n'
+
+
+
 #predefinicoes
 number_msg = 0
 cor_selecionada = "#083C6B"
-mensagem_automatica_pre = "está funcionando perfeitamente agora (aparentemente)! Seria bom dar uma testada extra mas acho que assim dá para o gasto, portanto estarei encerrando o meu trabalho aqui por hoje. Por hoje é só pessoal! e, lembrem-se sempre, evangellion é PEAK"
 nome_bot = "Bot:   "
 psg.theme('DarkBlue14')
 restart = True
@@ -21,7 +36,10 @@ active = False
 ja_somou = False
 deleted = []
 conversation_column =[[]]
-mensagem_automatica = tw.fill(mensagem_automatica_pre, 75)
+
+#window ajuda
+
+
 
 
 #layout
@@ -44,6 +62,7 @@ while restart:
 
         if event == psg.WIN_CLOSED or event=='-fechar_app-':
             break
+
         elif event == '-mensagem_enviar-':
 
             if active:
@@ -93,7 +112,12 @@ while restart:
 
         
         elif event == '-help-':
-            window['oi'].update(visible=False)
+            window_ajuda = criarWindowAjuda()
+            while True:
+                event, values = window_ajuda.read()
+                if event == psg.WIN_CLOSED or event == '-ajuda_fechada-':
+                    break
+            window_ajuda.close()
     window.close()
 
 
