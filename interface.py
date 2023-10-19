@@ -95,7 +95,7 @@ while restart:
                                                 key=f"message_user_number{number_msg}")]]
                 )
                 window.extend_layout(
-                        window['coluna'], [[psg.Text(nome_bot, text_color="#167DE5", key=f'bot{number_msg}'),
+                        window['coluna'], [[psg.Image('imagem_bot.png', subsample=32, key=f'bot{number_msg}'),
                         psg.Text(sys.formatado(number_msg, values['-enviado-']), key=f'message_bot_number{number_msg}')]]
                     )
 
